@@ -1,0 +1,22 @@
+[33mcommit 3f3149cd3162f68f0547a6f7dc03f465050b42cf[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: krishna chaitanya <nagakrishnachaitanya2005@gmail.com>
+Date:   Sun Nov 1 15:32:16 2026 +0530
+
+    adding the files into the github
+
+ .gitignore                                 |   26 [32m+[m
+ backend/app/__init__.py                    |    0
+ backend/app/api/__init__.py                |    0
+ backend/app/api/analysis.py                |    0
+ backend/app/core/__init__.py               |    0
+ backend/app/core/config.py                 |    0
+ backend/app/db/__init__.py                 |    0
+ backend/app/db/database.py                 |    0
+ backend/app/schemas/__init__.py            |    0
+ backend/app/schemas/incident.py            |   17 [32m+[m
+ backend/app/services/__init__.py           |    0
+ backend/app/services/log_analysis_chain.py |   59 [32m+[m
+ backend/main.py                            |   44 [32m+[m
+ backend/pyproject.toml                     |   18 [32m+[m
+ backend/uv.lock                            | 1738 [32m++++++++++++++++++++++++++++[m
+ 15 files changed, 1902 insertions(+)
