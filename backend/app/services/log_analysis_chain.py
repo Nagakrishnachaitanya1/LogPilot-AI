@@ -1,12 +1,17 @@
 from dotenv import load_dotenv
+from pathlib import Path
+
 from langchain_core.output_parsers import PydanticOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_groq import ChatGroq
 
 from app.schemas.incident import LogAnalysisResponse
+from app.db.database import create_table, insert
 
-load_dotenv()
+env_path = Path(__file__).resolve().parents[2] / ".env"
+load_dotenv(env_path, override=True)
 
+create_table()
 
 parser = PydanticOutputParser(pydantic_object=LogAnalysisResponse)
 
@@ -63,11 +68,11 @@ chain = prompt | llm | parser
 
 
 def analyze_logs(log_text: str) -> LogAnalysisResponse:
-    return chain.invoke(
-        {
-            "log_text": log_text,
-        }
-    )
+    analysis = chain.invoke({"log_text": log_text})
+
+    insert(log_text, analysis.model_dump_json())
+
+    return analysis
 
 
 if __name__ == "__main__":
@@ -82,4 +87,4 @@ if __name__ == "__main__":
 
     answer = analyze_logs(sample_log)
 
-    print(answer.model_dump_json(indent=2))
+    # print(answer.model_dump_json(indent=2))
